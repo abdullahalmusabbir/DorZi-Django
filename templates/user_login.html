@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<main style="padding-top: 70px; min-height: calc(100vh - 120px);">
+    <div style="max-width: 350px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif;">
+        <div style="background: #fff; padding: 28px 24px 22px 24px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
+            <h2 style="text-align: center; margin-bottom: 5px; font-size: 26px; font-weight: 700;">Welcome Back</h2>
+            <p style="text-align: center; margin-bottom: 5px; color: #444;">Sign in to your Dorzi Account</p>
+
+            <!-- User Login Form -->
+            <form method="POST" action="{% url 'user_login' %}" style="display: flex; flex-direction: column; gap: 12px;">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Email" required 
+                    style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #aaa; font-size: 15px; box-sizing: border-box; margin-bottom: 10px;">
+                <input type="password" name="password" placeholder="Password" required 
+                    style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #aaa; font-size: 15px; box-sizing: border-box;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; margin-bottom: 10px;">
+                    <label style="display: flex; align-items: center; font-size: 14px; cursor: pointer;">
+                        <input type="checkbox" name="remember_me" style="margin-right: 5px; cursor: pointer;">
+                        Remember me
+                    </label>
+                    <a href="{% url 'password_reset' %}" style="color: #194afb; text-decoration: none; font-size: 14px;">Forgot password?</a>
+                </div>
+                <button type="submit" 
+                    style="width: 100%; padding: 10px; background-color: #194afb; border: none; color: white; border-radius: 5px; font-size: 16px; font-weight: 600; cursor: pointer;">
+                    Login
+                </button>
+            </form>
+
+            <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.5;">
+                <div style="display: flex; align-items: center; justify-content: center; margin: 18px 0;">
+                    <hr style="flex:1; border:none; border-top:1px solid #e5e7eb; margin:0 10px;">
+                    <span style="color: #888; font-size: 14px; font-weight: 500;">Or continue with</span>
+                    <hr style="flex:1; border:none; border-top:1px solid #e5e7eb; margin:0 10px;">
+                </div>
+                <div style="display: flex; justify-content: center; margin-bottom: 10px;">
+                    <a href="/accounts/google/login/" 
+                        style="display: flex; align-items: center; gap: 8px; padding: 10px 24px; border: 1px solid #ddd; 
+                                border-radius: 6px; font-size: 15px; background: #fff; color: #444; 
+                                box-shadow: 0 2px 8px rgba(0,0,0,0.04); cursor: pointer; text-decoration: none;
+                                transition: background 0.2s, box-shadow 0.2s;"
+                        onmouseover="this.style.background='#f1f5f9'; this.style.boxShadow='0 4px 16px rgba(0,0,0,0.08)'"
+                        onmouseout="this.style.background='#fff'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'">
+                        <img src="{% static 'images/g.jpeg' %}" alt="Google" style="width: 20px; height: 20px;">
+                        Continue with Google
+                    </a>
+                </div>
+            </div>
+            
+            <a href="{% url 'user_signup' %}" style="color: #222; text-decoration: none; display: block; margin-top: 12px; text-align: center; font-size: 15px;">Sign Up</a>
+        </div>
+    </div>
+</main>
+
+<script>
+    // Remember me functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const rememberMe = localStorage.getItem('rememberMe');
+        if (rememberMe === 'true') {
+            document.querySelector('input[name="remember_me"]').checked = true;
+        }
+        
+        // Save preference when changed
+        document.querySelector('input[name="remember_me"]').addEventListener('change', function() {
+            localStorage.setItem('rememberMe', this.checked);
+        });
+    });
+</script>
+
+{% endblock %}

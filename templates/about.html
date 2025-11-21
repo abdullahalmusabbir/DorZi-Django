@@ -1,0 +1,315 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block title %}About{% endblock %}
+
+{% block content %}
+  
+<main style="padding-top: 70px; min-height: calc(100vh - 120px);">
+
+        <!-- Hero Section -->
+        <div style="background: url('{% static "images/about.png" %}') center/cover no-repeat; color: white; text-align: center; padding: 200px 20px; font-size: 36px; font-weight: bold;">
+            
+        </div>
+
+        <!-- Introduction Section -->
+        <div style="display: flex; max-width: 1200px; margin: 40px auto; padding: 20px; gap: 40px; align-items: center;">
+          <!-- Text Content Div -->
+          <div style="flex: 1;">
+            <h1 style="font-size: 36px; font-weight: 700; color: #1a1a1a; margin-bottom: 24px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Our Story</h1>
+            <p style="font-size: 16px; line-height: 1.6; color: #444; margin-bottom: 16px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+              Founded in 2024, Dozzi emerged from a simple observation: Bangladesh has some of the world's most skilled tailors, yet customers often struggle to find quality craftsmanship that meets their specific needs.
+            </p>
+            <p style="font-size: 16px; line-height: 1.6; color: #444; margin-bottom: 16px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+              Our platform bridges this gap by connecting customers directly with verified, experienced tailors across the country. We believe that every piece of clothing should tell a story - your story - crafted with precision and care by artisans who understand the art of tailoring.
+            </p>
+            <p style="font-size: 16px; line-height: 1.6; color: #444; margin-bottom: 16px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+              From traditional panjabis and salwar kameez to modern formal wear, our network of tailors brings decades of experience and cultural knowledge to every stitch. We're not just a marketplace; we're a community that celebrates craftsmanship and preserves the rich heritage of Bengali tailoring.
+            </p>
+          </div>
+
+          <!-- Image Div -->
+          <div style="flex: 1; display: flex; justify-content: center;">
+              <div style="width: 100%; max-width: 500px; height: 400px; border-radius: 8px; overflow: hidden;">
+                  <img src="{% static 'images/about1.png' %}" 
+                      alt="Tailoring Service" 
+                      style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+          </div>
+        </div>
+
+        <!-- nothing -->
+        <div style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
+          <h1 style="font-size: 36px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center;">
+            Our Values
+          </h1>
+          <p style="font-size: 16px; line-height: 1.6; color: #444; text-align: center; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto;">
+            These core principles guide everything we do and shape our commitment to excellence in tailoring services.
+          </p>
+        </div>
+
+        <!-- value section -->
+        <div style="max-width: 1200px; margin: 0 auto; padding: 60px 20px;">
+          <!-- First Row of Cards -->
+          <div style="display: flex; gap: 30px; margin-bottom: 30px; flex-wrap: wrap;">
+            <!-- Card 1 -->
+            <div style="flex: 1; min-width: 300px; background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+              <h2 style="font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Quality Craftsmanship
+              </h2>
+              <p style="font-size: 16px; line-height: 1.6; color: #444; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                We partner only with skilled tailors who demonstrate exceptional attention to detail and years of experience in their craft.
+              </p>
+            </div>
+
+            <!-- Card 2 -->
+            <div style="flex: 1; min-width: 300px; background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+              <h2 style="font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Customer Satisfaction
+              </h2>
+              <p style="font-size: 16px; line-height: 1.6; color: #444; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Your satisfaction is our priority. We provide support throughout your journey and ensure every piece meets your expectations.
+              </p>
+            </div>
+
+            <!-- Card 3 -->
+            <div style="flex: 1; min-width: 300px; background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+              <h2 style="font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Trust & Transparency
+              </h2>
+              <p style="font-size: 16px; line-height: 1.6; color: #444; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Every tailor is verified, reviewed, and rated by real customers. We ensure transparent pricing and clear communication throughout the process.
+              </p>
+            </div>
+          </div>
+
+          <!-- Second Row of Cards -->
+          <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+            <!-- Card 4 -->
+            <div style="flex: 1; min-width: 300px; background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+              <h2 style="font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Sustainable Practices
+              </h2>
+              <p style="font-size: 16px; line-height: 1.6; color: #444; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                We promote eco-friendly practices, supporting local artisans and encouraging sustainable fashion choices.
+              </p>
+            </div>
+
+            <!-- Card 5 -->
+            <div style="flex: 1; min-width: 300px; background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+              <h2 style="font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Timely Delivery
+              </h2>
+              <p style="font-size: 16px; line-height: 1.6; color: #444; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                We understand the importance of deadlines. Our tailors commit to realistic timelines and keep you updated on progress.
+              </p>
+            </div>
+
+            <!-- Card 6 -->
+            <div style="flex: 1; min-width: 300px; background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+              <h2 style="font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Cultural Heritage
+              </h2>
+              <p style="font-size: 16px; line-height: 1.6; color: #444; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                We celebrate and preserve traditional Bengali tailoring techniques while embracing modern design innovations.
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+          <!-- Service Section -->
+          <div style="max-width: 1500px; margin: 0 auto; padding: 80px 20px; background-color: #f8f9fa;">
+            <!-- Heading Section -->
+            <div style="text-align: center; margin-bottom: 60px;">
+              <h1 style="font-size: 36px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Our Impact
+              </h1>
+              <p style="font-size: 16px; line-height: 1.6; color: #444; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto;">
+                Numbers that reflect our commitment to connecting customers with exceptional tailoring services.
+              </p>
+            </div>
+
+            <!-- Stats Grid -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+              
+              <!-- Verified Tailors -->
+              <div style="text-align: center;">
+                <div style="font-size: 48px; font-weight: 700; color: #2c5aa0; margin-bottom: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                  <span class="counter" data-target="500">0</span>+
+                </div>
+                <h3 style="font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                  Verified Tailors
+                </h3>
+                <p style="font-size: 14px; color: #666; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                  Skilled artisans across Bangladesh
+                </p>
+              </div>
+
+              <!-- Happy Customers -->
+              <div style="text-align: center;">
+                <div style="font-size: 48px; font-weight: 700; color: #2c5aa0; margin-bottom: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                  <span class="counter" data-target="10000">0</span>+
+                </div>
+                <h3 style="font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                  Happy Customers
+                </h3>
+                <p style="font-size: 14px; color: #666; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                  Satisfied with our service
+                </p>
+              </div>
+
+              <!-- Orders Completed -->
+              <div style="text-align: center;">
+                <div style="font-size: 48px; font-weight: 700; color: #2c5aa0; margin-bottom: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                  <span class="counter" data-target="25000">0</span>+
+                </div>
+                <h3 style="font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                  Orders Completed
+                </h3>
+                <p style="font-size: 14px; color: #666; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                  Quality garments delivered
+                </p>
+              </div>
+
+              <!-- Customer Satisfaction -->
+              <div style="text-align: center;">
+                <div style="font-size: 48px; font-weight: 700; color: #2c5aa0; margin-bottom: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                  <span class="counter" data-target="98">0</span>%
+                </div>
+                <h3 style="font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                  Customer Satisfaction
+                </h3>
+                <p style="font-size: 14px; color: #666; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                  Based on verified reviews
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            // Counter animation function
+            function startCounterAnimation() {
+              const counters = document.querySelectorAll('.counter');
+              const speed = 100; // Lower is faster
+              
+              counters.forEach(counter => {
+                const updateCount = () => {
+                  const target = +counter.getAttribute('data-target');
+                  const count = +counter.innerText;
+                  
+                  const increment = target / speed;
+                  
+                  if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(updateCount, 20);
+                  } else {
+                    counter.innerText = target;
+                  }
+                };
+                
+                updateCount();
+              });
+            }
+
+            // Intersection Observer to trigger animation when section is in view
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  startCounterAnimation();
+                  observer.unobserve(entry.target);
+                }
+              });
+            }, { threshold: 0.5 });
+
+            // Observe the impact section
+            const impactSection = document.querySelector('[style*="background-color: #f8f9fa"]');
+            if (impactSection) {
+              observer.observe(impactSection);
+            }
+          </script>
+        
+        <!-- Team Section -->
+        <div style="max-width: 1400px; margin: 0 auto; padding: 80px 20px;">
+          <!-- Heading Section -->
+          <div style="text-align: center; margin-bottom: 60px;">
+            <h1 style="font-size: 36px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+              Meet Our Team
+            </h1>
+            <p style="font-size: 16px; line-height: 1.6; color: #444; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto;">
+              Passionate individuals dedicated to connecting skilled tailors with customers who appreciate quality craftsmanship.
+            </p>
+          </div>
+
+          <!-- Team Members Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+            
+            <!-- Rashid Ahmed -->
+            <div style="text-align: center; background: white; border-radius: 12px; padding: 30px; ">
+              <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px; background-color: #e9ecef; display: flex; align-items: center; justify-content: center;">
+                <img src="{% static "images/i.png" %}" alt="Rashid Ahmed" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <h2 style="font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Rashid Ahmed
+              </h2>
+              <p style="font-size: 16px; font-weight: 600; color: #2c5aa0; margin-bottom: 16px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Founder & CEO
+              </p>
+              <p style="font-size: 14px; line-height: 1.6; color: #666; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Former textile industry executive with 15 years of experience connecting traditional craftsmanship with modern markets.
+              </p>
+            </div>
+
+            <!-- Fatima Khan -->
+            <div style="text-align: center; background: white; border-radius: 12px; padding: 30px; ">
+              <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px; background-color: #e9ecef; display: flex; align-items: center; justify-content: center;">
+                <img src="{% static "images/emu.jpg" %}" alt="Fatima Khan" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <h2 style="font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Sohana Iqbal Emu
+              </h2>
+              <p style="font-size: 16px; font-weight: 600; color: #2c5aa0; margin-bottom: 16px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Head of Tailor Relations
+              </p>
+              <p style="font-size: 14px; line-height: 1.6; color: #666; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Expert in artisan community building with deep knowledge of traditional tailoring techniques and quality standards.
+              </p>
+            </div>
+
+            <!-- Karim Hassan -->
+            <div style="text-align: center; background: white; border-radius: 12px; padding: 30px; ">
+              <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px; background-color: #e9ecef; display: flex; align-items: center; justify-content: center;">
+                <img src="{% static "images/niloy.jpg" %}" alt="Karim Hassan" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <h2 style="font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Karim Hassan
+              </h2>
+              <p style="font-size: 16px; font-weight: 600; color: #2c5aa0; margin-bottom: 16px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Technology Director
+              </p>
+              <p style="font-size: 14px; line-height: 1.6; color: #666; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Software engineer passionate about using technology to preserve and promote traditional crafts in the digital age.
+              </p>
+            </div>
+
+            <!-- Nasreen Begum -->
+            <div style="text-align: center; background: white; border-radius: 12px; padding: 30px;">
+              <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px; background-color: #e9ecef; display: flex; align-items: center; justify-content: center;">
+                <img src="{% static "images/tisa.jpg" %}" alt="Nasreen Begum" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <h2 style="font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Rawdatil Jannat Trisha
+              </h2>
+              <p style="font-size: 16px; font-weight: 600; color: #2c5aa0; margin-bottom: 16px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Quality Assurance Manager
+              </p>
+              <p style="font-size: 14px; line-height: 1.6; color: #666; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Master tailor with 20+ years of experience ensuring every piece meets the highest standards of craftsmanship.
+              </p>
+            </div>
+          </div>
+        </div>
+   
+</main>
+
+{% endblock %}

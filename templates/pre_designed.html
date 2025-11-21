@@ -1,0 +1,841 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}pre-designed{% endblock %}
+
+{% block content %}
+  
+<main style="padding-top: 70px; min-height: calc(100vh - 120px);">
+        
+    <div style="position: relative; width: 100%; height: 400px; background-image: url('{% static 'images/64.jpg' %}'); background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; text-align: center;">
+
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.3);"></div>
+        
+        <div style="position: relative; z-index: 1; color: white; max-width: 800px; padding: 20px;">
+            <h1 style="font-size: 48px; font-weight: bold; margin-bottom: 20px;">Pre-Designed Collections</h1>
+            <p style="font-size: 18px; margin-bottom: 30px; line-height: 1.5;">
+                Browse our curated collection of ready-to-order designs. Choose from traditional and modern styles, all crafted by expert tailors across Bangladesh.
+            </p>
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <a href="#products" style="background-color: #0216adff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; transition: background-color 0.3s;">
+                    Browse Designs
+                </a>
+                <a href="{% url 'findTailor' %}" style="background-color: transparent; color: white; padding: 12px 24px; text-decoration: none; border: 2px solid white; border-radius: 4px; font-weight: bold; transition: background-color 0.3s;">
+                    Custom Order
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <section style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+
+        <h1 style="font-size: 28px; margin-bottom: 10px; text-align: center;">Shop by Category</h1>
+        <p style="font-size: 16px; color: #666; margin-bottom: 30px; text-align: center;">Choose from our wide range of clothing categories</p>
+        
+
+        <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 15px; margin-bottom: 40px;">
+            <div onclick="filterProducts('All Designs')" style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.borderColor='#0216adff'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.1)';" onmouseout="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none';">
+                <i class="fas fa-th-large" style="font-size: 30px; color: #000000; margin-bottom: 10px;"></i>
+                <p style="font-weight: 500;">All Designs</p>
+            </div>
+            <div onclick="filterProducts('Punjabi')" style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.borderColor='#0216adff'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.1)';" onmouseout="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none';">
+                <i class="fas fa-tshirt" style="font-size: 30px; color: #000000; margin-bottom: 10px;"></i>
+                <p style="font-weight: 500;">Punjabi</p>
+            </div>
+            <div onclick="filterProducts('Salwar Kameez')" style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.borderColor='#0216adff'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.1)';" onmouseout="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none';">
+                <i class="fas fa-female" style="font-size: 30px; color: #000000; margin-bottom: 10px;"></i>
+                <p style="font-weight: 500;">Salwar Kameez</p>
+            </div>
+            <div onclick="filterProducts('Saree')" style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.borderColor='#0216adff'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.1)';" onmouseout="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none';">
+                <i class="fas fa-scroll" style="font-size: 30px; color: #000000; margin-bottom: 10px;"></i>
+                <p style="font-weight: 500;">Saree</p>
+            </div>
+            <div onclick="filterProducts('Formal Wear')" style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.borderColor='#0216adff'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.1)';" onmouseout="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none';">
+                <i class="fas fa-shirt" style="font-size: 30px; color: #000000; margin-bottom: 10px;"></i>
+                <p style="font-weight: 500;">Formal Wear</p>
+            </div>
+            <div onclick="filterProducts('Casual Wear')" style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.borderColor='#0216adff'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.1)';" onmouseout="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none';">
+                <i class="fas fa-tshirt" style="font-size: 30px; color: #000000; margin-bottom: 10px;"></i>
+                <p style="font-weight: 500;">Casual Wear</p>
+            </div>
+            <div onclick="filterProducts('Suits & Blazers')" style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.borderColor='#0216adff'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.1)';" onmouseout="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none';">
+                <i class="fas fa-user-tie" style="font-size: 30px; color: #000000; margin-bottom: 10px;"></i>
+                <p style="font-weight: 500;">Suits & Blazers</p>
+            </div>
+            <div onclick="filterProducts('Western Wear')" style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.borderColor='#0216adff'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.1)';" onmouseout="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none';">
+                <i class="fas fa-glasses" style="font-size: 30px; color: #000000; margin-bottom: 10px;"></i>
+                <p style="font-weight: 500;">Western Wear</p>
+            </div>
+        </div>
+
+        
+        <div style="display: flex; gap: 20px;">
+
+            <aside style="width: 250px; position: sticky; top: 100px; align-self: flex-start;">
+                <div style="border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; background: white;">
+                    <h3 style="font-size: 18px; margin-bottom: 15px; border-bottom: 1px solid #e0e0e0; padding-bottom: 10px;">Filter Design</h3>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="font-size: 16px; margin-bottom: 10px;">Gender</h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" name="gender" value="men" style="margin-right: 8px;"> Unisex
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" name="gender" value="women" style="margin-right: 8px;"> Women
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" name="gender" value="unisex" style="margin-right: 8px;"> Men
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="font-size: 16px; margin-bottom: 10px;">Price Range (BDT)</h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" name="price" value="500-1000" style="margin-right: 8px;"> ৳500 - ৳1000
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" name="price" value="1000-2000" style="margin-right: 8px;"> ৳1000 - ৳2000
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" name="price" value="2000-3000" style="margin-right: 8px;"> ৳2000 - ৳3000
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" name="price" value="3000-4000" style="margin-right: 8px;"> ৳3000 - ৳4000
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" name="price" value="5000+" style="margin-right: 8px;"> ৳5000+
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button onclick="clearFilters()" style="background-color: #f0f0f0; border: 1px solid #ddd; padding: 8px 16px; border-radius: 4px; cursor: pointer; width: 100%;">Clear All Filters</button>
+                </div>
+            </aside>
+            
+            <div style="flex: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="font-size: 20px;">Available Designs</h2>
+                    <p style="color: #666;" id="products-count">{{ products|length }} Designs Found</p>
+                </div>
+                
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;" id="products-container">
+                    {% for a in products %}
+                        {% if user.is_authenticated %}
+                            {% if a.tailor.id != user.tailor.id %}
+                                <div class="product-card" style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 16px; width: 250px; background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); overflow: hidden; transition: transform 0.2s ease, box-shadow 0.3s ease; position: relative;" 
+                                    data-category="{{ a.category }}"
+                                    data-price="{{ a.price }}"
+                                    data-gender="{{ a.gender|default:'unisex' }}"
+                                    onmouseover="this.querySelector('.first').style.opacity='0'; this.querySelector('.second')?.style.opacity='1';" 
+                                    onmouseout="this.querySelector('.first').style.opacity='1'; this.querySelector('.second')?.style.opacity='0';">
+
+                                    <div style="position: relative; width: 100%; height: 200px; overflow: hidden; border-radius: 8px; margin-bottom: 12px;">
+                                        {% if a.images.all|length > 0 %}
+                                            <img src="{{ a.images.all.0.image.url }}" alt="{{ a.name }}" 
+                                                class="first"
+                                                style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease-in-out; position: absolute; top: 0; left: 0; opacity: 1;">
+                                        {% endif %}
+
+                                        {% if a.images.all|length > 1 %}
+                                            <img src="{{ a.images.all.1.image.url }}" alt="{{ a.name }}" 
+                                                class="second"
+                                                style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease-in-out; position: absolute; top: 0; left: 0; opacity: 0;">
+                                        {% endif %}
+                                    </div>
+
+                                    <h3 style="font-size: 18px; font-weight: 600; margin: 10px 0 6px;">{{ a.category }}</h3>
+                                    <p style="font-size: 14px; color: #555; margin-bottom: 10px;">{{ a.description }}</p>
+
+                                    <div style="font-size: 14px; color: #333; margin-bottom: 12px;">
+                                        Price: <span style="font-weight: bold; color: #111827;">TK {{ a.price }} BDT</span>
+                                    </div>
+                                    <!-- order --> 
+                                    <button data-bs-toggle="modal" data-bs-target="#orderModal{{ a.id }}"
+                                        style="display: inline-block; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-size: 14px; color: white; background-color: rgb(100, 148, 252); margin-bottom: 6px; cursor: pointer; border: none;"
+                                        onmouseover="this.style.backgroundColor='#3b82f6';"
+                                        onmouseout="this.style.backgroundColor='rgb(92, 143, 252)';">
+                                        Details
+                                    </button>
+
+                                    <!-- Modal for each product -->
+                                    <div id="orderModal{{ a.id }}" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 9999; overflow-y: auto;">
+                                        <div style="background: #fff; max-width: 1000px; height: 100vh; width: 90%; margin: 50px auto; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 30px; position: relative; display: flex; flex-wrap: wrap; gap: 20px;">
+                                            <!-- Close button moved inside the white content div -->
+                                            <span onclick="document.getElementById('orderModal{{ a.id }}').style.display='none'" 
+                                                style="position: absolute; top: 10px; right: 10px; cursor: pointer; font-size: 24px; color: #333; z-index: 1;">
+                                                &times;
+                                            </span>
+                                            <!-- Left: Image Section -->
+                                            <div style="flex: 1 1 45%; display: flex; flex-direction: column; align-items: center;">
+                                                <!-- Main Image -->
+                                                {% if a.images.all|length > 0 %}
+                                                    <img id="mainImage{{ a.id }}" src="{{ a.images.all.0.image.url }}" alt="{{ a.name }}" style="width: 400px; max-height: 560px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; padding-top: 10px;">
+                                                {% else %}
+                                                    <div style="width: 100%; height: 400px; background: #eee; border-radius: 8px;"></div>
+                                                {% endif %}
+
+                                                <!-- Thumbnail Images -->
+                                                <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                                                    {% for image in a.images.all %}
+                                                        <img src="{{ image.image.url }}" onclick="changeMainImage('{{ a.id }}', '{{ image.image.url }}')" style="width: 80px; height: 80px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 2px solid #ddd;">
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+
+                                            <!-- Right: Product Info -->
+                                            <div style="flex: 1 1 50%; display: flex; flex-direction: column; gap: 0px; padding: 5px 0;">
+                                                <h2 style="font-size: 24px; font-weight: bold; margin-bottom: 0;">{{ a.name }}</h2>
+                                                <p style="font-size: 20px; font-weight: bold; color: #2563EB; margin-bottom: 0;">৳{{ a.price }}</p>
+
+                                                <p style="font-size: 15px; color: #555; margin-bottom: 0;">{{ a.description }}</p>
+
+                                                <div style="margin-bottom: 0;">
+                                                    <h4 style="margin-bottom: 0; font-size: 16px;">Features</h4>
+                                                    <ul style="list-style: none; padding-left: 0; font-size: 14px; color: #444; margin-top: 0;">
+                                                        <li>✔ Premium Cotton Fabric</li>
+                                                        <li>✔ Traditional Embroidery</li>
+                                                        <li>✔ Comfortable Fit</li>
+                                                        <li>✔ Machine Washable</li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- Size Selection -->
+                                                <div style="margin-bottom: 5px;">
+                                                    <h4 style="margin-bottom: 3px; font-size: 16px;">Select Size</h4>
+                                                    <div id="sizeContainer{{ a.id }}" style="display: flex; gap: 8px;">
+                                                        <button type="button" class="size-btn selected" data-size="S" onclick="selectSize(this, '{{ a.id }}')" style="width: 40px; height: 40px; border: 2px solid #0216adff; background-color: #0216adff; color: white; border-radius: 4px; cursor: pointer; font-weight: bold;display: flex;align-items: center;justify-content: center;">S</button>
+                                                        
+                                                        <button type="button" class="size-btn" data-size="M" onclick="selectSize(this, '{{ a.id }}')" style="width: 40px; height: 40px; border: 2px solid #ddd; background-color: white; color: #333; border-radius: 4px; cursor: pointer; font-weight: bold;display: flex;align-items: center;justify-content: center;">M</button>
+                                                        
+                                                        <button type="button" class="size-btn" data-size="L" onclick="selectSize(this, '{{ a.id }}')" style="width: 40px; height: 40px; border: 2px solid #ddd; background-color: white; color: #333; border-radius: 4px; cursor: pointer; font-weight: bold;display: flex;align-items: center;justify-content: center;">L</button>
+                                                        
+                                                        <button type="button" class="size-btn" data-size="XL" onclick="selectSize(this, '{{ a.id }}')" style="width: 40px; height: 40px; border: 2px solid #ddd; background-color: white; color: #333;border-radius: 4px; cursor: pointer; font-weight: bold;display: flex;align-items: center;justify-content: center;">XL</button>
+                                                        
+                                                        <button type="button" class="size-btn" data-size="XXL" onclick="selectSize(this, '{{ a.id }}')" style="
+                                                            width: 40px; height: 40px; border: 2px solid #ddd; background-color: white;color: #333; border-radius: 4px; cursor: pointer; font-weight: bold;display: flex;align-items: center;justify-content: center;">XXL</button>
+                                                    </div>
+                                                </div>
+
+                                                <script>
+                                                    // Function to handle size selection
+                                                    function selectSize(element, productId) {
+                                                        // Remove selected class from all buttons
+                                                        const buttons = document.querySelectorAll(`#sizeContainer${productId} .size-btn`);
+                                                        buttons.forEach(btn => {
+                                                            btn.classList.remove('selected');
+                                                            btn.style.backgroundColor = 'white';
+                                                            btn.style.borderColor = '#ddd';
+                                                            btn.style.color = '#333';
+                                                        });
+                                                        
+                                                        // Add selected class to clicked button
+                                                        element.classList.add('selected');
+                                                        element.style.backgroundColor = '#0216adff';
+                                                        element.style.borderColor = '#0216adff';
+                                                        element.style.color = 'white';
+                                                        
+                                                        // Update the hidden size field
+                                                        document.getElementById(`hiddenSize${productId}`).value = element.dataset.size;
+                                                        
+                                                        // Update the size display in the order form
+                                                        const sizeDisplay = document.getElementById(`selectedSizeDisplay${productId}`);
+                                                        if (sizeDisplay) {
+                                                            sizeDisplay.textContent = element.dataset.size;
+                                                        }
+                                                    }
+                                                </script>
+
+                                                <!-- Quantity -->
+                                                <div style="margin-bottom: 8px;">
+                                                    <h4 style="margin-bottom: 3px; font-size: 16px;">Quantity</h4>
+                                                    <div style="display: flex; align-items: center; gap: 5px;">
+                                                        <!-- Minus Button -->
+                                                        <button type="button" onclick="changeQty{{ a.id }}(-1)" style="width: 35px; height: 35px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; font-size: 18px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#ddd'" onmouseout="this.style.background='#f0f0f0'">-</button>
+
+                                                        <!-- Quantity Input -->
+                                                        <input id="qtyInput{{ a.id }}" type="number" name="quantity" value="1" min="1" max="4" 
+                                                            style="width: 60px; text-align: center; padding: 5px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;">
+                                                        
+                                                        <!-- Plus Button -->
+                                                        <button type="button" onclick="changeQty{{ a.id }}(1)" style="width: 35px; height: 35px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; font-size: 18px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#ddd'" onmouseout="this.style.background='#f0f0f0'">+</button>
+                                                    </div>
+                                                </div>
+
+                                                <p style="font-size: 14px; color: #666; margin-bottom: 2px;">🚚 Delivery Time: 3-7 days</p>
+                                                <p style="font-size: 14px; color: #666; margin-bottom: 0;">📍 Made in Dhaka</p>
+
+                                                <!-- Buttons -->
+                                                <div style="display: flex; gap: 10px; margin-top: 5px; margin-bottom: 5px;">
+                                                        
+                                                    <button type="button" onclick="openOrderFormModal('{{ a.id }}')" 
+                                                            style="padding: 8px 16px; background: #2563EB; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px;">
+                                                        Order Now
+                                                    </button>
+
+                                                    <!-- Order Form Modal -->
+                                                    <div id="orderFormModal{{ a.id }}" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 10000; overflow-y: auto;">
+                                                        <div style="background: #fff; max-width: 800px; margin: 50px auto; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 30px; position: relative;">
+                                                            <span onclick="document.getElementById('orderFormModal{{ a.id }}').style.display='none'" 
+                                                                style="position: absolute; top: 10px; right: 10px; cursor: pointer; font-size: 24px; color: #333; z-index: 1;">
+                                                                &times;
+                                                            </span>
+                                                            
+                                                            <h2 style="font-size: 24px; margin-bottom: 20px; text-align: center;">Place Order</h2>
+                                                            
+                                                            <form id="orderForm{{ a.id }}" method="POST" action="{% url 'create_order' %}">
+                                                                {% csrf_token %}
+                                                                
+                                                                <!-- Hidden fields for product and tailor -->
+                                                                <input type="hidden" name="product_id" value="{{ a.id }}">
+                                                                <input type="hidden" name="tailor_id" value="{{ a.tailor.id }}">
+                                                                <input type="hidden" name="quantity" id="hiddenQuantity{{ a.id }}" value="1">
+                                                                <input type="hidden" name="price" value="{{ a.price }}">
+                                                                <input type="hidden" name="size" id="hiddenSize{{ a.id }}" value="">
+                                                                
+                                                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                                                                    <!-- Full Name -->
+                                                                    <div>
+                                                                        <label style="display: block; margin-bottom: 8px; font-weight: 500;">Full Name</label>
+                                                                        <input type="text" name="full_name" required 
+                                                                            value="{{ user.get_full_name }}" 
+                                                                            style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;"
+                                                                            placeholder="Enter your full name">
+                                                                    </div>
+                                                                    
+                                                                    <!-- Phone -->
+                                                                    <div>
+                                                                        <label style="display: block; margin-bottom: 8px; font-weight: 500;">Phone Number</label>
+                                                                        <input type="tel" name="phone" required 
+                                                                            value="{{ user.customer.phone }}" 
+                                                                            style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;"
+                                                                            placeholder="Enter your phone number">
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <!-- Address -->
+                                                                <div style="margin-bottom: 20px;">
+                                                                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Address</label>
+                                                                    <textarea name="address" rows="3" required 
+                                                                            style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;"
+                                                                            placeholder="Enter your delivery address">{{ user.customer.address }}</textarea>
+                                                                </div>
+                                                                
+                                                                <!-- Special Instructions -->
+                                                                <div style="margin-bottom: 20px;">
+                                                                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Special Instructions</label>
+                                                                    <textarea name="special_instructions" rows="3" maxlength="500" 
+                                                                            style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;"
+                                                                            placeholder="Any special requests or customizations..."></textarea>
+                                                                    <p style="text-align: right; font-size: 12px; color: #666; margin-top: 5px;">
+                                                                        <span id="charCount{{ a.id }}">0</span>/500 characters
+                                                                    </p>
+                                                                </div>
+                                                                
+                                                                <div style="border-top: 1px solid #eee; padding-top: 15px; margin-bottom: 20px;">
+                                                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                                                        <div>
+                                                                            <p style="margin: 5px 0;">Item:</p>
+                                                                            <p style="margin: 5px 0;">Size:</p>
+                                                                            <p style="margin: 5px 0;">Quantity:</p>
+                                                                            <p style="margin: 5px 0; font-weight: bold;">Total:</p>
+                                                                        </div>
+                                                                        <div style="text-align: right;">
+                                                                            <p style="margin: 5px 0;">{{ a.category }}</p>
+                                                                            <p style="margin: 5px 0;" id="selectedSizeDisplay{{ a.id }}">S</p>
+                                                                            <p style="margin: 5px 0;" id="selectedQuantityDisplay{{ a.id }}">1</p>
+                                                                            <p style="margin: 5px 0; font-weight: bold;" id="totalPriceDisplay{{ a.id }}">TK {{ a.price }} BDT</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <button type="submit" 
+                                                                        style="width: 100%; padding: 12px; background-color: #0216adff; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;">
+                                                                    Confirm Order
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+                                                    <script>
+                                                        // Function to open the order form modal
+                                                        function openOrderFormModal(productId) {
+                                                            // Get the currently selected size from the size selection buttons
+                                                            const selectedSizeBtn = document.querySelector(`#sizeContainer${productId} .size-btn.selected`);
+                                                            const selectedSize = selectedSizeBtn ? selectedSizeBtn.dataset.size : 'S';
+                                                            
+                                                            const quantity = document.getElementById(`qtyInput${productId}`).value;
+                                                            const price = {{ a.price }};
+                                                            const totalPrice = price * quantity;
+                                                            
+                                                            // Set the hidden fields with current selected values
+                                                            document.getElementById(`hiddenSize${productId}`).value = selectedSize;
+                                                            document.getElementById(`hiddenQuantity${productId}`).value = quantity;
+                                                            
+                                                            // Update the display in order form
+                                                            document.getElementById(`selectedSizeDisplay${productId}`).textContent = selectedSize;
+                                                            document.getElementById(`selectedQuantityDisplay${productId}`).textContent = quantity;
+                                                            document.getElementById(`totalPriceDisplay${productId}`).textContent = `TK ${totalPrice} BDT`;
+                                                            
+                                                            // Show the modal
+                                                            document.getElementById(`orderFormModal${productId}`).style.display = 'block';
+                                                        }
+                                                        
+                                                        // Character count for special instructions
+                                                        document.querySelectorAll('textarea[name="special_instructions"]').forEach(textarea => {
+                                                            textarea.addEventListener('input', function() {
+                                                                const charCount = this.value.length;
+                                                                const charCountElement = this.closest('.modal').querySelector('[id^="charCount"]');
+                                                                if (charCountElement) {
+                                                                    charCountElement.textContent = charCount;
+                                                                }
+                                                            });
+                                                        });
+                                                        
+                                                        // Close modal when clicking outside
+                                                        window.addEventListener('click', function(event) {
+                                                            document.querySelectorAll('[id^="orderFormModal"]').forEach(modal => {
+                                                                if (event.target === modal) {
+                                                                    modal.style.display = 'none';
+                                                                }
+                                                            });
+                                                        });
+                                                    </script>
+
+                                                </div>
+                                                <h2>About the Tailor</h2>
+                                                
+                                                <p>{{ a.tailor.user.first_name }} {{ a.tailor.user.last_name }}<br> {{a.tailor.business_name}}<br>{{a.tailor.business_location}}<br>{{ a.tailor.business_description }}</p>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <script>
+                                        // Quantity control functions
+                                        function changeQty{{ a.id }}(delta) {
+                                            const input = document.getElementById("qtyInput{{ a.id }}");
+                                            let value = parseInt(input.value) || 1;
+                                            value += delta;
+                                            if (value < 1) value = 1;
+                                            if (value > 4) value = 4;
+                                            input.value = value;
+                                        }
+
+                                        // Make sure the DOM is loaded before attaching event listeners
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            // Initialize quantity input
+                                            const qtyInput = document.getElementById("qtyInput{{ a.id }}");
+                                            if (qtyInput) {
+                                                qtyInput.addEventListener('change', function() {
+                                                    let value = parseInt(this.value) || 1;
+                                                    if (value < 1) this.value = 1;
+                                                    if (value > 4) this.value = 4;
+                                                });
+                                            }
+                                        });
+                                        function changeMainImage(productId, imageUrl) {
+                                            document.getElementById('mainImage' + productId).src = imageUrl;
+                                        }
+
+                                        // Optional: Close modal on outside click
+                                        window.addEventListener("click", function(event) {
+                                            const modal = document.getElementById("orderModal{{ a.id }}");
+                                            if (event.target === modal) {
+                                                modal.style.display = "none";
+                                            }
+                                        });
+
+                                        document.querySelector(`[data-bs-target="#orderModal{{ a.id }}"]`).addEventListener("click", function() {
+                                            document.getElementById("orderModal{{ a.id }}").style.display = "flex";
+                                        });
+                                        // Optional: Close modal on click outside
+                                        window.addEventListener("click", function(event) {
+                                        const modal = document.getElementById("orderModal{{ a.id }}");
+                                        if (event.target === modal) {
+                                            modal.style.display = "none";
+                                        }
+                                        });
+
+                                        // Show modal manually (no Bootstrap)
+                                        document.querySelector(`[data-bs-target="#orderModal{{ a.id }}"]`).addEventListener("click", function() {
+                                        document.getElementById("orderModal{{ a.id }}").style.display = "flex";
+                                        });
+                                    </script>
+
+                                    
+
+                                    {% comment %} reviews {% endcomment %}
+
+                                    <!-- Review Button -->
+                                    <button onclick="openReviewModal('{{ user.id }}', '{{ a.tailor.id }}', '{{ a.id }}')"
+                                        style="display: inline-block; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-size: 14px; color: white; background-color: rgba(127, 233, 201, 1); cursor: pointer; border: none;"
+                                        onmouseover="this.style.backgroundColor='rgba(54, 193, 149, 1)';"
+                                        onmouseout="this.style.backgroundColor='rgba(127, 233, 201, 1)';">
+                                        Reviews
+                                    </button>
+
+                                    <!-- Review Modal per product -->
+                                    <div id="reviewModal_{{ a.id }}" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: center;">
+                                        <div style="background: white; padding: 24px; border-radius: 8px; width: 700px; max-width: 90%; position: relative;">
+                                            <span onclick="closeReviewModal('{{ a.id }}')" style="position: absolute; top: 10px; right: 16px; cursor: pointer; font-size: 18px;">&times;</span>
+                                            <h1>Review</h1>
+
+                                            <div id="reviews-container-{{ a.id }}">
+                                                {% for r in reviews %}
+                                                    {% if r.product.id == a.id %}
+                                                        {% if forloop.counter <= 2 %}
+                                                            <div class="review">
+                                                                <p><strong>{{ r.user.username }}</strong> rated this product: <strong>{{ r.rating }} / 5</strong></p>
+                                                                <p>{% if r.comment %}{{ r.comment }}{% endif %}</p>
+                                                                <p><small>Posted on: {{ r.timestamp|date:"Y-m-d H:i" }}</small></p>
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+
+                                            {% if review|length > 2 %}
+                                                <a href="javascript:void(0);" 
+                                                    id="see-more-btn-{{ a.id }}" 
+                                                    data-product-id="{{ a.id }}"
+                                                    style="margin-top: 16px; display: inline-block; color: #2563eb; text-decoration: underline; cursor: pointer;"
+                                                    onclick="showMoreReviews('{{ a.id }}')">
+                                                    See more
+                                                </a>
+                                            {% endif %}
+
+                                            <form id="reviewForm_{{ a.id }}" method="POST" action="{% url 'createreviews' %}" onsubmit="return validateReviewForm('{{ a.id }}')">
+                                                {% csrf_token %}
+                                                
+                                                <input type="hidden" name="product_id" value="{{ a.id }}">
+                                                
+                                                <label style="display:block; margin-bottom:8px;">Rating (1-5):</label>
+                                                
+                                                <div id="starRating_{{ a.id }}" style="display: inline-flex; flex-direction: row-reverse; font-size: 28px; cursor: pointer; user-select: none; gap: 5px;">
+                                                    {% for i in "54321" %}
+                                                        <input type="radio" id="star{{ i }}_{{ a.id }}" name="rating" value="{{ i }}" style="display: none;" required>
+                                                        <label for="star{{ i }}_{{ a.id }}" 
+                                                            style="color: #ccc; transition: color 0.2s;" 
+                                                            onmouseover="hoverStars({{ i }}, '{{ a.id }}')" 
+                                                            onmouseout="resetStars('{{ a.id }}')"
+                                                            onclick="selectStar({{ i }}, '{{ a.id }}')">&#9733;</label>
+                                                    {% endfor %}
+                                                </div>
+                                                
+                                                <label style="display:block; margin-top:16px;">Comment (optional):</label>
+                                                <textarea name="comment" rows="4" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-top: 8px;" placeholder="Write your review here..."></textarea>
+                                                
+                                                <div style="margin-top: 16px; display: flex; gap: 10px;">
+                                                    <button type="submit" style="background-color: #059669; color: white; border: none; padding: 10px 16px; border-radius: 4px; cursor: pointer; flex: 1;">
+                                                        Submit Review
+                                                    </button>
+                                                    <button type="button" onclick="resetReviewForm('{{ a.id }}')" style="background-color: #6b7280; color: white; border: none; padding: 10px 16px; border-radius: 4px; cursor: pointer;">
+                                                        Reset
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <!-- JavaScript Section -->
+                                    <script>
+                                        function openReviewModal(userId, tailorId, productId) {
+                                            const form = document.getElementById(`reviewForm_${productId}`);
+                                            if (!form) { 
+                                                console.error('review form not found', productId); 
+                                                return; 
+                                            }
+                                            // set hidden inputs instead of changing action
+                                            const u = form.querySelector('input[name="user_id"]');
+                                            const t = form.querySelector('input[name="tailor_id"]');
+                                            if (u) u.value = userId || '';
+                                            if (t) t.value = tailorId || '';
+                                            document.getElementById(`reviewModal_${productId}`).style.display = "flex";
+                                        }
+
+                                        function closeReviewModal(productId) {
+                                            document.getElementById(`reviewModal_${productId}`).style.display = "none";
+                                        }
+
+                                        function hoverStars(star, productId) {
+                                            for (let i = 1; i <= 5; i++) {
+                                                const label = document.querySelector(`label[for="star${i}_${productId}"]`);
+                                                if (i <= star) {
+                                                    label.style.color = '#facc15'; // amber
+                                                } else {
+                                                    label.style.color = '#ccc';
+                                                }
+                                            }
+                                        }
+
+                                        function resetStars(productId) {
+                                            const checked = document.querySelector(`#reviewForm_${productId} input[name="rating"]:checked`);
+                                            const current = checked ? parseInt(checked.value) : 0;
+                                            for (let i = 1; i <= 5; i++) {
+                                                const label = document.querySelector(`label[for="star${i}_${productId}"]`);
+                                                if (i <= current) {
+                                                    label.style.color = '#facc15';
+                                                } else {
+                                                    label.style.color = '#ccc';
+                                                }
+                                            }
+                                        }
+
+                                        function selectStar(rating, productId) {
+                                            const stars = document.querySelectorAll(`#starRating_${productId} label`);
+                                            stars.forEach((star, index) => {
+                                                if (5 - index <= rating) {
+                                                    star.style.color = '#facc15';
+                                                } else {
+                                                    star.style.color = '#ccc';
+                                                }
+                                            });
+                                        }
+
+                                        // Reset review form function
+                                        function resetReviewForm(productId) {
+                                            const form = document.getElementById(`reviewForm_${productId}`);
+                                            if (form) {
+                                                form.reset();
+                                                
+                                                // Reset star colors to default
+                                                const stars = document.querySelectorAll(`#starRating_${productId} label`);
+                                                stars.forEach(star => {
+                                                    star.style.color = '#ccc';
+                                                });
+                                                
+                                                // Clear any selected radio buttons
+                                                const selectedRating = document.querySelector(`#reviewForm_${productId} input[name="rating"]:checked`);
+                                                if (selectedRating) {
+                                                    selectedRating.checked = false;
+                                                }
+                                            }
+                                        }
+
+                                        // Form validation function
+                                        function validateReviewForm(productId) {
+                                            const form = document.getElementById(`reviewForm_${productId}`);
+                                            const rating = form.querySelector('input[name="rating"]:checked');
+                                            const comment = form.querySelector('textarea[name="comment"]');
+                                            
+                                            if (!rating) {
+                                                alert('Please select a rating before submitting.');
+                                                return false;
+                                            }
+                                            
+                                            if (comment && comment.value.length > 500) {
+                                                alert('Comment must be less than 500 characters.');
+                                                return false;
+                                            }
+                                            
+                                            return true;
+                                        }
+
+                                        function showMoreReviews(productId) {
+                                            const container = document.getElementById(`reviews-container-${productId}`);
+                                            const button = document.getElementById(`see-more-btn-${productId}`);
+                                            let reviewCount = container.children.length;
+                                            const reviewsPerPage = 10;
+
+                                            fetch(`/load-more-reviews/${productId}/${reviewCount}/${reviewsPerPage}/`)
+                                                .then(response => response.json())
+                                                .then(data => {
+                                                    if (data.reviews.length > 0) {
+                                                        data.reviews.forEach(r => {
+                                                            const reviewDiv = document.createElement("div");
+                                                            reviewDiv.classList.add("review");
+                                                            reviewDiv.innerHTML = `
+                                                                <p><strong>${r.user}</strong> rated this product: <strong>${r.rating} / 5</strong></p>
+                                                                <p>${r.comment}</p>
+                                                                <p><small>Posted on: ${r.timestamp}</small></p>
+                                                            `;
+                                                            container.appendChild(reviewDiv);
+                                                        });
+
+                                                        if (data.reviews.length < reviewsPerPage) {
+                                                            button.style.display = "none";
+                                                        }
+                                                    } else {
+                                                        button.style.display = "none";
+                                                    }
+                                                })
+                                                .catch(error => {
+                                                    console.error('Error loading more reviews:', error);
+                                                });
+                                        }
+
+                                        window.addEventListener("click", function(event) {
+                                            // Check if any modal is open and clicked outside the modal content
+                                            document.querySelectorAll('[id^="reviewModal_"]').forEach(function(modal) {
+                                                if (event.target === modal) {
+                                                    modal.style.display = "none";
+                                                }
+                                            });
+                                        });
+                                    </script>
+
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <div class="product-card" style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 16px; width: 250px; background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.05);" data-category="{{ a.category }}" data-price="{{ a.price }}" data-gender="{{ a.gender|default:'unisex' }}">
+                                <div style="width: 100%; height: 200px; overflow: hidden; border-radius: 8px; margin-bottom: 12px;">
+                                    {% if a.images.all|length > 0 %}
+                                        <img src="{{ a.images.all.0.image.url }}" alt="{{ a.name }}" 
+                                            style="width: 100%; height: 100%; object-fit: cover;">
+                                    {% else %}
+                                        <div style="width: 100%; height: 100%; background-color: #eee;"></div>
+                                    {% endif %}
+                                </div>
+                                <h3 style="font-size: 18px; font-weight: 600; margin: 10px 0 6px;">{{ a.name }}</h3>
+                                <p style="font-size: 14px; color: #555; margin-bottom: 10px;">{{ a.description }}</p>
+                                <p style="font-size: 14px; font-weight: bold;">Price: TK {{ a.price }} BDT</p>
+                                <p style="color: red; font-weight: 500; margin-top: 8px;">Login to Order or Review</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SINGLE FILTERING SCRIPT - NO DUPLICATES -->
+    <script>
+        // Global variables to track current filters
+        let currentCategory = 'All Designs';
+        let currentGenderFilters = [];
+        let currentPriceFilters = [];
+
+        // Filter products by category
+        function filterProducts(category) {
+            currentCategory = category;
+            applyAllFilters();
+        }
+
+        // Apply gender filters
+        function updateGenderFilters() {
+            currentGenderFilters = Array.from(document.querySelectorAll('input[name="gender"]:checked')).map(el => el.value);
+            applyAllFilters();
+        }
+
+        // Apply price filters  
+        function updatePriceFilters() {
+            currentPriceFilters = Array.from(document.querySelectorAll('input[name="price"]:checked')).map(el => el.value);
+            applyAllFilters();
+        }
+
+        // Main filtering function
+        function applyAllFilters() {
+            const productCards = document.querySelectorAll('.product-card');
+            let visibleCount = 0;
+
+            productCards.forEach(card => {
+                let shouldShow = true;
+                
+                // Get product data from data attributes
+                const productCategory = card.getAttribute('data-category') || '';
+                const productPrice = parseFloat(card.getAttribute('data-price')) || 0;
+                const productGender = card.getAttribute('data-gender') || 'unisex';
+                
+                // Category filter
+                if (currentCategory !== 'All Designs') {
+                    if (productCategory !== currentCategory) {
+                        shouldShow = false;
+                    }
+                }
+                
+                // Gender filter
+                if (currentGenderFilters.length > 0) {
+                    let genderMatch = false;
+                    
+                    currentGenderFilters.forEach(genderFilter => {
+                        // Handle different gender formats
+                        if (genderFilter === 'men' && (productGender === 'male' || productGender === 'men')) {
+                            genderMatch = true;
+                        } else if (genderFilter === 'women' && (productGender === 'female' || productGender === 'women')) {
+                            genderMatch = true;
+                        } else if (genderFilter === 'unisex' && (productGender === 'unisex' || productGender === 'other')) {
+                            genderMatch = true;
+                        } else if (genderFilter === productGender) {
+                            genderMatch = true;
+                        }
+                    });
+                    
+                    if (!genderMatch) shouldShow = false;
+                }
+                
+                // Price filter
+                if (currentPriceFilters.length > 0) {
+                    let priceMatch = false;
+                    
+                    currentPriceFilters.forEach(priceRange => {
+                        switch(priceRange) {
+                            case '500-1000':
+                                if (productPrice >= 500 && productPrice <= 1000) priceMatch = true;
+                                break;
+                            case '1000-2000':
+                                if (productPrice >= 1000 && productPrice <= 2000) priceMatch = true;
+                                break;
+                            case '2000-3000':
+                                if (productPrice >= 2000 && productPrice <= 3000) priceMatch = true;
+                                break;
+                            case '3000-4000':
+                                if (productPrice >= 3000 && productPrice <= 4000) priceMatch = true;
+                                break;
+                            case '5000+':
+                                if (productPrice >= 5000) priceMatch = true;
+                                break;
+                        }
+                    });
+                    
+                    if (!priceMatch) shouldShow = false;
+                }
+                
+                // Show/hide card
+                if (shouldShow) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Update products count
+            document.getElementById('products-count').textContent = `${visibleCount} Designs Found`;
+        }
+
+        // Clear all filters
+        function clearFilters() {
+            currentCategory = 'All Designs';
+            currentGenderFilters = [];
+            currentPriceFilters = [];
+            
+            // Uncheck all checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            
+            applyAllFilters();
+        }
+
+        // Initialize event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners to checkboxes
+            document.querySelectorAll('input[name="gender"]').forEach(checkbox => {
+                checkbox.addEventListener('change', updateGenderFilters);
+            });
+            
+            document.querySelectorAll('input[name="price"]').forEach(checkbox => {
+                checkbox.addEventListener('change', updatePriceFilters);
+            });
+            
+            // Apply initial filters
+            applyAllFilters();
+        });
+    </script>
+        
+</main>
+
+{% endblock %}

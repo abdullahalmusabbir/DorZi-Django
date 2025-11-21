@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block content %}
+<main style="padding-top: 10px; margin-top: 60px; min-height: calc(100vh - 230px); 
+             display: flex; justify-content: center; align-items: center;">
+    
+    <div style="background: white; border-radius: 12px; padding: 40px; 
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 450px; width: 100%;">
+        
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div style="background: #f8f9fa; width: 60px; height: 60px; border-radius: 50%; 
+                        display: flex; align-items: center; justify-content: center; 
+                        margin: 0 auto 15px; border: 2px solid #e9ecef;">
+                <img src="{% static 'images/g.jpeg' %}" alt="Google" 
+                     style="width: 30px; height: 30px;">
+            </div>
+            <h2 style="color: #2c3e50; margin-bottom: 10px; font-weight: 600;">Google Sign In</h2>
+            <p style="color: #7f8c8d; line-height: 1.5;">You're one step away from accessing your account with Google</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" 
+                    style="background: linear-gradient(135deg, #4285F4, #34A853); 
+                           color: white; border: none; padding: 14px; border-radius: 8px; 
+                           font-size: 16px; font-weight: 500; cursor: pointer; width: 100%;
+                           transition: all 0.3s ease; margin-bottom: 20px;">
+                Continue with Google
+            </button>
+        </form>
+
+        <div style="text-align: center;">
+            <a href="{% url 'user_login' %}" 
+               style="color: #95a5a6; text-decoration: none; font-size: 14px;
+                      transition: color 0.3s ease;">
+                ← Use different login method
+            </a>
+        </div>
+    </div>
+
+</main>
+
+<style>
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(66, 133, 244, 0.25);
+    }
+    
+    a:hover {
+        color: #4285F4 !important;
+    }
+</style>
+{% endblock %}

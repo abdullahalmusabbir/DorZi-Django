@@ -1,0 +1,287 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+
+<main style="padding-top: 10px; margin-top: 60px; min-height: calc(100vh - 230px);">
+    <div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif;">
+        <!-- Header Section -->
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h1 style="font-size: 28px; color: #333; margin-bottom: 10px;">Create Account</h1>
+            <p style="color: #666; font-size: 16px;">Join Dorzi and start your tailoring journey</p>
+        </div>
+
+        <!-- User Type Selection -->
+        <div style="display: flex; justify-content: center; margin-bottom: 30px; gap: 10px;">
+            <button id="customerBtn" onclick="showForm('customer')" 
+                    style="padding: 12px 30px; background-color: #007bff; color: white; border: none; 
+                        border-radius: 4px; font-weight: bold; cursor: pointer; min-width: 120px;
+                        transition: background-color 0.3s ease;">
+                Customer
+            </button>
+            <button id="tailorBtn" onclick="showForm('tailor')" 
+                    style="padding: 12px 30px; background-color: #e0e0e0; color: #666; border: none; 
+                        border-radius: 4px; font-weight: bold; cursor: pointer; min-width: 120px;
+                        transition: background-color 0.3s ease;">
+                Tailor
+            </button>
+        </div>
+
+        <!-- Customer Form -->
+        <div id="customerForm" style="display: block;">
+            <form method="POST" action="{% url 'user_signup' %}" style="background: #f9f9f9; padding: 25px; border-radius: 8px;">
+                {% csrf_token %}
+                <h2 style="font-size: 20px; color: #333; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">Basic Information</h2>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; font-weight: bold;">Full Name*</label>
+                        <input type="text" name="full_name" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; font-weight: bold;">Email Address*</label>
+                        <input type="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">Phone Number*</label>
+                    <div style="display: flex;">
+                        <span style="padding: 10px; background: #eee; border: 1px solid #ddd; border-right: none; border-radius: 4px 0 0 4px;">+880</span>
+                        <input type="tel" name="phone" required style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 0 4px 4px 0;">
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; font-weight: bold;">Password*</label>
+                        <input type="password" name="password" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; font-weight: bold;">Confirm Password*</label>
+                        <input type="password" name="confirm_password" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                </div>
+                
+                <h2 style="font-size: 20px; color: #333; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">Address Information</h2>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">Address*</label>
+                    <input type="text" name="address" required placeholder="House/Building No, Street, Area" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: flex; align-items: center;">
+                        <input type="checkbox" required style="margin-right: 10px;">
+                        <span>I agree to the Terms and Condition and Privacy Policy</span>
+                    </label>
+                </div>
+                
+                <button type="submit" style="width: 100%; padding: 12px; background: #007bff; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Create Customer Account</button>
+                
+                <p style="text-align: center; margin-top: 20px; color: #666;">
+                    Already have an account? <a href="{% url 'user_login' %}" style="color: #007bff; text-decoration: none;">Sign-In</a>
+                </p>
+            </form>
+        </div>
+
+        <!-- Tailor Form -->
+<div id="tailorForm" style="display: none;">
+    <form method="POST" action="{% url 'tailor_signup' %}" enctype="multipart/form-data" style="background: #f9f9f9; padding: 25px; border-radius: 8px;">
+        {% csrf_token %}
+        <h2 style="font-size: 20px; color: #333; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">Basic Information</h2>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+            <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: bold;">Full Name*</label>
+                <input type="text" name="full_name" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+            <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: bold;">Email Address*</label>
+                <input type="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold;">Phone Number*</label>
+            <div style="display: flex;">
+                <span style="padding: 10px; background: #eee; border: 1px solid #ddd; border-right: none; border-radius: 4px 0 0 4px;">+880</span>
+                <input type="tel" name="phone" required style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 0 4px 4px 0;">
+            </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+            <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: bold;">Password*</label>
+                <input type="password" name="password" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+            <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: bold;">Confirm Password*</label>
+                <input type="password" name="confirm_password" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+        </div>
+        
+        <h2 style="font-size: 20px; color: #333; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px;">Business Information</h2>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold;">Business Name*</label>
+            <input type="text" name="business_name" required placeholder="e.g., Ahmed Tailors, Fashion House" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+            <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: bold;">Specialization*</label>
+                <select name="specialization" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                    <option value="">Select Specialization</option>
+                    <option value="short_punjabi">Short Punjabi</option>
+                    <option value="long_punjabi">Long Punjabi</option>
+                    <option value="designer_punjabi">Designer Punjabi</option>
+                    <option value="embroidered_punjabi">Embroidered Punjabi</option>
+                    <option value="kurta_punjabi">Kurta Punjabi</option>
+                    <option value="traditional_punjabi">Traditional Punjabi</option>
+                    <option value="formal_shirt">Formal Shirt</option>
+                    <option value="casual_shirt">Casual Shirt</option>
+                    <option value="half_sleeve_shirt">Half Sleeve Shirt</option>
+                    <option value="denim_shirt">Denim Shirt</option>
+                    <option value="tshirt">T-Shirt</option>
+                    <option value="sleeveless_shirt">Sleeveless Shirt</option>
+                    <option value="printed_shirt">Printed Shirt</option>
+                    <option value="kurta">Kurta</option>
+                    <option value="formal_pant">Formal Pant</option>
+                    <option value="jeans">Jeans</option>
+                    <option value="cargo_pant">Cargo Pant</option>
+                    <option value="chinos">Chinos</option>
+                    <option value="trouser">Trouser</option>
+                    <option value="shorts">Shorts</option>
+                    <option value="leggings">Leggings</option>
+                    <option value="salwar_kameez">Salwar Kameez</option>
+                    <option value="lehenga">Lehenga</option>
+                    <option value="blouse">Blouse</option>
+                    <option value="saree_fall_pleat">Saree Fall & Pleat</option>
+                    <option value="gown">Gown</option>
+                    <option value="maxi_dress">Maxi Dress</option>
+                    <option value="anarkali">Anarkali</option>
+                    <option value="skirt">Skirt</option>
+                    <option value="palazzo">Palazzo</option>
+                    <option value="tops">Tops</option>
+                    <option value="kameez">Kameez</option>
+                    <option value="saree_blouse">Saree Blouse</option>
+                    <option value="waistcoat">Waistcoat</option>
+                    <option value="jacket">Jacket</option>
+                    <option value="coat">Coat</option>
+                    <option value="sherwani">Sherwani</option>
+                    <option value="kids_dress">Kids Dress</option>
+                </select>
+            </div>
+            <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: bold;">Experience*</label>
+                <select name="experience" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                    <option value="">Select Experience</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="expert">Expert</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <label style="display: block; margin-bottom: 8px; font-weight: bold;">District*</label>
+            <select name="district" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                <option value="">Select District</option>
+                <option value="dhaka">Dhaka</option>
+                <option value="chittagong">Chittagong</option>
+                <option value="khulna">Khulna</option>
+                <option value="rajshahi">Rajshahi</option>
+                <option value="sylhet">Sylhet</option>
+                <option value="barisal">Barisal</option>
+                <option value="rangpur">Rangpur</option>
+                <option value="mymensingh">Mymensingh</option>
+                <option value="comilla">Comilla</option>
+                <option value="gazipur">Gazipur</option>
+            </select>
+        </div>
+        <div>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Price Start From (৳)</label>
+            <input type="number" name="price" step="0.01" required 
+                style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px;">
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold;">Shop/Office Address*</label>
+            <input type="text" name="business_location" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold;">NID Number*</label>
+            <input type="text" name="nid_number" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold;">Profile Picture</label>
+            <input type="file" name="profile_picture" accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold;">About Yourself*</label>
+            <textarea name="tailor_about" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; min-height: 80px;"></textarea>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold;">Service Offer*</label>
+            <textarea name="service_offered" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; min-height: 80px;"></textarea>
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold;">Business Description*</label>
+            <textarea name="business_description" required placeholder="Tell customers about your business, specialties, and what makes you unique..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; min-height: 100px;"></textarea>
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: flex; align-items: center;">
+                <input type="checkbox" required style="margin-right: 10px;">
+                <span>I agree to the Terms and Condition and Privacy Policy</span>
+            </label>
+        </div>
+        
+        <button type="submit" style="width: 100%; padding: 12px; background: #007bff; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Create Tailor Account</button>
+        
+        <p style="text-align: center; margin-top: 20px; color: #666;">
+            Already have an account? <a href="{% url 'tailor_login' %}" style="color: #007bff; text-decoration: none;">Sign in</a>
+        </p>
+    </form>
+</div>
+
+         <script>
+            function showForm(formType) {
+                // Get all elements
+                const customerForm = document.getElementById('customerForm');
+                const tailorForm = document.getElementById('tailorForm');
+                const customerBtn = document.getElementById('customerBtn');
+                const tailorBtn = document.getElementById('tailorBtn');
+
+                // Hide both forms
+                customerForm.style.display = 'none';
+                tailorForm.style.display = 'none';
+
+                // Reset both buttons to inactive state
+                customerBtn.style.backgroundColor = '#e0e0e0';
+                customerBtn.style.color = '#666';
+                tailorBtn.style.backgroundColor = '#e0e0e0';
+                tailorBtn.style.color = '#666';
+
+                // Activate selected form and button
+                if(formType === 'customer') {
+                    customerForm.style.display = 'block';
+                    customerBtn.style.backgroundColor = '#007bff';
+                    customerBtn.style.color = 'white';
+                } else {
+                    tailorForm.style.display = 'block';
+                    tailorBtn.style.backgroundColor = '#007bff';
+                    tailorBtn.style.color = 'white';
+                }
+            }
+        </script>
+    </div>
+</main>
+
+{% endblock %}
